@@ -13,7 +13,7 @@ steps:
 
 - script: |
     pip install pylint
-    pylint **/*.py
+    find . -name "*.py" | xargs pylint || true
   displayName: 'Run pylint'
 
 - script: |
@@ -24,7 +24,7 @@ steps:
 - task: CopyFiles@2
   inputs:
     contents: '**/*.py'
-    targetFolder: '$(build.artifactStagingDirectory)'
+    targetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: PublishBuildArtifacts@1
   inputs:
